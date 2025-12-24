@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Navidad mi amor</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Georgia", serif;
+    background: url('https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+/* Overlay dorado */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,215,0,0.15), rgba(0,0,0,0.25));
+    z-index: 0;
+}
+
+/* Botón de inicio */
+#start-btn {
+    background: linear-gradient(45deg, #c31432, #8e0e00);
+    border: none;
+    padding: 18px 35px;
+    font-size: 1.5em;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 0, 76, 0.7);
+    animation: pulse 2s infinite alternate;
+    z-index: 3;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to   { transform: scale(1.1); }
+}
+
+/* Contenedor del mensaje */
+.container {
+    display: none;
+    position: absolute;
+    width: 80%;
+    max-width: 700px;
+    z-index: 2;
+}
+
+/* Caja del mensaje */
+.message-box {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 25px;
+    border-radius: 18px;
+    font-size: 1.2em;
+    line-height: 1.5;
+    text-align: justify;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* Copos de nieve */
+.snow {
+    position: fixed;
+    top: -10px;
+    font-size: 22px;
+    opacity: 0.8;
+    animation: fallSnow 7s linear infinite;
+    z-index: 1;
+}
+
+@keyframes fallSnow {
+    from { transform: translateY(0vh) rotate(0deg); opacity: 1; }
+    to   { transform: translateY(105vh) rotate(360deg); opacity: 0.3; }
+}
+
+/* Corazones */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 26px;
+    opacity: 0.9;
+    animation: floatHeart 9s linear infinite;
+    z-index: 1;
+}
+
+@keyframes floatHeart {
+    0%   { transform: translateY(0vh) scale(0.6); opacity: 0.6; }
+    50%  { opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
+}
+
+/* Luces decorativas navideñas */
+.light {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: blink 1.5s infinite alternate;
+    background: red;
+}
+
+.light:nth-child(odd) {
+    background: lime;
+}
+
+@keyframes blink {
+    from { opacity: 0.3; }
+    to   { opacity: 1; }
+}
+
+/* Linternas flotantes */
+.lantern {
+    position: fixed;
+    bottom: -20px;
+    width: 12px;
+    height: 18px;
+    background: gold;
+    border-radius: 6px;
+    box-shadow: 0 0 12px 4px rgba(255,215,0,0.8);
+    animation: riseLantern 10s linear infinite;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+@keyframes riseLantern {
+    0% { transform: translateY(0) scale(0.5); opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="xmas-music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/12/19/audio_3c4b2b3c0e.mp3?filename=christmas-magic-150016.mp3" type="audio/mpeg">
+</audio>
+
+<button id="start-btn">❤️ Presiona Aqui ❤️</button>
+
+<div class="container" id="message-container">
+    <h1>🎄 Feliz Navidad Mi amor 🎄</h1>
+    <div class="message-box">
+        <p>
+        Hoy 25 de diciembre siento que no necesito pedir nada. Tener a una mujer tan hermosa, inteligente, dedicada, cariñosa, paciente, sincera y comprensiva es el mejor regalo que puedo tener y ese ya lo tengo contigo mi amor.<br><br>
+
+        Llegaste en el momento justo para iluminar mi vida y estoy muy feliz y agradecido de tenerte junto a mí. Muchas gracias por hacer mis días felices, por preocuparte por mí aunque a veces sea necio, por estar cuando más lo necesito y por esas llamadas que me alegran el día.<br><br>
+
+        Aunque a veces tengamos nuestras peleas o malentendidos, cada día trato de mejorar para darte la mejor versión de mí porque deseo que lo nuestro dure mucho tiempo y que esta sea la primera Navidad de muchas más juntos.<br><br>
+
+        Mi vida espero que te guste mi regalo, no es el que quería ni pensaba darte pero es con todo mi amor. El próximo año espero darte el que realmente mereces.<br><br>
+
+        <b>¡Feliz Navidad mi amor hermosa!</b><br><br>
+
+        <i>Pd: De parte de tu novio que te ama con todo su corazón. ❤️</i>
+        </p>
+    </div>
+</div>
+
+<script>
+const music = document.getElementById("xmas-music");
+music.volume = 1.0;
+
+function generateSnow() {
+    setInterval(() => {
+        let snow = document.createElement("div");
+        snow.className = "snow";
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * 100 + "vw";
+        snow.style.animationDuration = 5 + Math.random() * 3 + "s";
+        document.body.appendChild(snow);
+        setTimeout(() => snow.remove(), 7000);
+    }, 300);
+}
+
+function generateHearts() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 6 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 9000);
+    }, 600);
+}
+
+function generateLanterns() {
+    setInterval(() => {
+        let lantern = document.createElement("div");
+        lantern.className = "lantern";
+        lantern.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(lantern);
+        setTimeout(() => lantern.remove(), 10000);
+    }, 1200);
+}
+
+generateSnow();
+generateHearts();
+generateLanterns();
+
+for (let i = 0; i < 30; i++) {
+    let light = document.createElement("div");
+    light.className = "light";
+    light.style.left = Math.random() * 100 + "vw";
+    light.style.top  = Math.random() * 100 + "vh";
+    document.body.appendChild(light);
+}
+
+document.getElementById("start-btn").addEventListener("click", function() {
+    this.style.display = "none";
+    document.getElementById("message-container").style.display = "block";
+    music.play();
+});
+</script>
+
+</body>
+</html>
